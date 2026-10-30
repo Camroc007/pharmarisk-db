@@ -2,8 +2,8 @@ name: Update NHS dm+d Dataset
 
 on:
   schedule:
-    - cron: '0 3 * * 0' # Runs automatically every Sunday at 3:00 AM UTC
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+    - cron: '0 3 * * 0' # Weekly on Sunday at 3:00 AM UTC
+  workflow_dispatch: # Manual trigger
 
 permissions:
   contents: write
@@ -22,30 +22,22 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install System Dependencies & Clojure CLI
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download wardle/dmd Standalone JAR
         run: |
-          sudo apt-get update
-          sudo apt-get install -y rlwrap
-          curl -O https://download.clojure.org/install/linux-install-1.11.1.1413.sh
-          chmod +x linux-install-1.11.1.1413.sh
-          sudo ./linux-install-1.11.1.1413.sh
+          curl -L -o dmd-server.jar https://github.com/wardle/dmd/releases/download/v0.6.139/dmd-server-0.6.139.jar
 
-      - name: Clone wardle/dmd
-        run: git clone https://github.com/wardle/dmd.git wardle-dmd
-
-      - name: Build dm+d SQLite Database
+      - name: Build dm+d SQLite Database via Standalone JAR
         env:
           TRUD_API_KEY: ${{ secrets.TRUD_API_KEY }}
         run: |
           mkdir -p cache
           echo -n "$TRUD_API_KEY" > api-key.txt
-          cd wardle-dmd
-          clojure -M:run latest --api-key ../api-key.txt --cache-dir ../cache --db ../dmd.db
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+          java -jar dmd-server.jar latest --api-key api-key.txt --cache-dir cache --db dmd.db
 
       - name: Run Export Script
         run: python export_dmd.py
