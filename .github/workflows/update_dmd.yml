@@ -1,0 +1,54 @@
+name: Update NHS dm+d Dataset
+
+on:
+  schedule:
+    - cron: '0 3 * * 0' # Runs automatically every Sunday at 3:00 AM UTC
+  workflow_dispatch: # Allows you to trigger it manually anytime
+
+jobs:
+  build-and-export:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java & Clojure
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Install Clojure CLI
+        run: |
+          curl -O https://download.clojure.org/install/linux-install-1.11.1.1413.sh
+          chmod +x linux-install-1.11.1.1413.sh
+          sudo ./linux-install-1.11.1.1413.sh
+
+      - name: Clone wardle/dmd
+        run: git clone https://github.com/wardle/dmd.git wardle-dmd
+
+      - name: Build dm+d SQLite Database
+        env:
+          TRUD_API_KEY: ${{ secrets.TRUD_API_KEY }}
+        run: |
+          mkdir -p cache
+          echo "$TRUD_API_KEY" > api-key.txt
+          cd wardle-dmd
+          clj -M:run latest --api-key ../api-key.txt --cache-dir ../cache --db ../dmd.db
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Export Script
+        run: python export_dmd.py
+
+      - name: Commit Updated JSON to Repository
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add dmd_gtin_latest.json
+          git commit -m "Automated update of NHS dm+d GTIN dataset" || exit 0
+          git push
