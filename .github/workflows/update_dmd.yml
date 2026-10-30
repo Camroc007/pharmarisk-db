@@ -2,8 +2,8 @@ name: Update NHS dm+d Dataset
 
 on:
   schedule:
-    - cron: '0 3 * * 0' # Runs automatically every Sunday at 3:00 AM UTC
-  workflow_dispatch: # Allows you to trigger it manually anytime
+    - cron: '0 3 * * 0' # Weekly on Sunday at 3:00 AM UTC
+  workflow_dispatch: # Manual trigger
 
 jobs:
   build-and-export:
@@ -19,8 +19,10 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install Clojure CLI
+      - name: Install System Dependencies & Clojure CLI
         run: |
+          sudo apt-get update
+          sudo apt-get install -y rlwrap
           curl -O https://download.clojure.org/install/linux-install-1.11.1.1413.sh
           chmod +x linux-install-1.11.1.1413.sh
           sudo ./linux-install-1.11.1.1413.sh
@@ -33,9 +35,9 @@ jobs:
           TRUD_API_KEY: ${{ secrets.TRUD_API_KEY }}
         run: |
           mkdir -p cache
-          echo "$TRUD_API_KEY" > api-key.txt
+          echo -n "$TRUD_API_KEY" > api-key.txt
           cd wardle-dmd
-          clj -M:run latest --api-key ../api-key.txt --cache-dir ../cache --db ../dmd.db
+          clojure -M:run latest --api-key ../api-key.txt --cache-dir ../cache --db ../dmd.db
 
       - name: Set up Python
         uses: actions/setup-python@v5
