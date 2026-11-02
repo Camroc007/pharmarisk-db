@@ -1,0 +1,144 @@
+{
+  "hyoscine butylbromide": {
+    "ingredient_name": "Hyoscine Butylbromide",
+    "has_cardiac_risk": true,
+    "cardiac_effects": [
+      "Arrhythmia",
+      "Palpitations",
+      "Tachycardia"
+    ],
+    "side_effects": [
+      "Arrhythmia",
+      "Palpitations",
+      "Tachycardia"
+    ]
+  },
+  "hyoscine hydrobromide": {
+    "ingredient_name": "Hyoscine Hydrobromide",
+    "has_cardiac_risk": true,
+    "cardiac_effects": [
+      "Arrhythmia",
+      "Palpitations",
+      "Tachycardia"
+    ],
+    "side_effects": [
+      "Arrhythmia",
+      "Palpitations",
+      "Tachycardia"
+    ]
+  },
+  "pseudoephedrine": {
+    "ingredient_name": "Pseudoephedrine",
+    "has_cardiac_risk": true,
+    "cardiac_effects": [
+      "Arrhythmia",
+      "Hypertension",
+      "Palpitations",
+      "Tachycardia"
+    ],
+    "side_effects": [
+      "Arrhythmia",
+      "Hypertension",
+      "Palpitations",
+      "Tachycardia"
+    ]
+  },
+  "ephedrine": {
+    "ingredient_name": "Ephedrine",
+    "has_cardiac_risk": true,
+    "cardiac_effects": [
+      "Arrhythmia",
+      "Hypertension",
+      "Tachycardia"
+    ],
+    "side_effects": [
+      "Arrhythmia",
+      "Hypertension",
+      "Tachycardia"
+    ]
+  },
+  "citalopram": {
+    "ingredient_name": "Citalopram",
+    "has_cardiac_risk": true,
+    "cardiac_effects": [
+      "Arrhythmia",
+      "QT Prolongation",
+      "Tachycardia"
+    ],
+    "side_effects": [
+      "Arrhythmia",
+      "QT Prolongation",
+      "Tachycardia"
+    ]
+  },
+  "escitalopram": {
+    "ingredient_name": "Escitalopram",
+    "has_cardiac_risk": true,
+    "cardiac_effects": [
+      "QT Prolongation",
+      "Tachycardia"
+    ],
+    "side_effects": [
+      "QT Prolongation",
+      "Tachycardia"
+    ]
+  },
+  "amiodarone": {
+    "ingredient_name": "Amiodarone",
+    "has_cardiac_risk": true,
+    "cardiac_effects": [
+      "Arrhythmia",
+      "Bradycardia",
+      "QT Prolongation",
+      "Tachycardia"
+    ],
+    "side_effects": [
+      "Arrhythmia",
+      "Bradycardia",
+      "QT Prolongation",
+      "Tachycardia"
+    ]
+  },
+  "sotalol": {
+    "ingredient_name": "Sotalol",
+    "has_cardiac_risk": true,
+    "cardiac_effects": [
+      "Arrhythmia",
+      "Bradycardia",
+      "QT Prolongation"
+    ],
+    "side_effects": [
+      "Arrhythmia",
+      "Bradycardia",
+      "QT Prolongation"
+    ]
+  },
+  "erythromycin": {
+    "ingredient_name": "Erythromycin",
+    "has_cardiac_risk": true,
+    "cardiac_effects": [
+      "Arrhythmia",
+      "QT Prolongation",
+      "Tachycardia"
+    ],
+    "side_effects": [
+      "Arrhythmia",
+      "QT Prolongation",
+      "Tachycardia"
+    ]
+  },
+  "domperidone": {
+    "ingredient_name": "Domperidone",
+    "has_cardiac_risk": true,
+    "cardiac_effects": [
+      "Arrhythmia",
+      "QT Prolongation",
+      "Ventricular Arrhythmia"
+    ],
+    "side_effects": [
+      "Arrhythmia",
+      "QT Prolongation",
+      "Ventricular Arrhythmia"
+    ]
+  }
+}
