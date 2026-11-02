@@ -29,7 +29,8 @@ jobs:
 
       - name: Download wardle/dmd Standalone JAR
         run: |
-          curl -L -o dmd-server.jar https://github.com/wardle/dmd/releases/download/v0.6.139/dmd-server-0.6.139.jar
+          curl -sSLf -o dmd-server.jar https://repo.clojars.org/uk/gov/nhs/digital/dmd/dmd-standalone/0.6.139/dmd-standalone-0.6.139.jar || \
+          curl -sSLf -o dmd-server.jar https://github.com/wardle/dmd/releases/download/v0.6.139/dmd-server-0.6.139.jar
 
       - name: Build dm+d SQLite Database via Standalone JAR
         env:
