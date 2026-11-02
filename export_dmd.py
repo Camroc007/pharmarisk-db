@@ -40,7 +40,7 @@ STATIC_CARDIAC_RISK_MAP = {
 SALTS_AND_SUFFIXES = r'\b(ph\.?\s*eur|usp|bp|hydrate|hydrochloride|hcl|maleate|sodium|sulfate|sulphate|besilate|mesilate|tartrate|trihydrate|dihydrate|phosphate|acetate|bromide)\b'
 
 # ---------------------------------------------------------------------------
-# 2. Helper Functions
+# 2. Helper Functions & Matching Logic
 # ---------------------------------------------------------------------------
 def normalize_text(text: str) -> str:
     if not text:
@@ -145,7 +145,7 @@ def build_mhra_ingredient_database():
     return ingredient_db
 
 # ---------------------------------------------------------------------------
-# 3. Dynamic Schema Querying
+# 3. SQLite Export Loop with Correct Wardle dm+d Table Names
 # ---------------------------------------------------------------------------
 def build_gtin_json():
     mhra_ingredients = build_mhra_ingredient_database()
@@ -154,28 +154,18 @@ def build_gtin_json():
         conn = sqlite3.connect("dmd.db")
         cursor = conn.cursor()
 
-        # Check existing tables in generated dmd.db
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        tables = [row[0] for row in cursor.fetchall()]
-        print(f"Detected SQLite tables in dmd.db: {tables}")
-
-        gtin_table = "gtin" if "gtin" in tables else "gtin_ampp" if "gtin_ampp" in tables else None
-        
-        if not gtin_table:
-            raise Exception("Neither 'gtin' nor 'gtin_ampp' table found in dmd.db")
-
-        # Dynamic SQL query accommodating wardle/dmd schema variants
-        query = f"""
+        # SQL Query targeting wardle/dmd's schema tables
+        query = """
         SELECT 
-            gtin.{gtin_table} AS gtin,
-            ampp.nm AS product_name,
-            GROUP_CONCAT(ing.nm, ' + ') AS raw_ingredients
-        FROM {gtin_table} gtin
-        JOIN ampp ON gtin.amppid = ampp.id
-        LEFT JOIN vmp_ing ON ampp.vmpid = vmp_ing.vmpid
-        LEFT JOIN ing ON vmp_ing.ingid = ing.id
-        WHERE gtin.{gtin_table} IS NOT NULL
-        GROUP BY gtin.{gtin_table}, ampp.nm;
+            gtin.GTIN AS gtin,
+            ampp.NM AS product_name,
+            GROUP_CONCAT(ing.NM, ' + ') AS raw_ingredients
+        FROM GTIN__AMPP gtin
+        JOIN AMPP ampp ON gtin.AMPPID = ampp.ID
+        LEFT JOIN VMP__VIRTUAL_PRODUCT_INGREDIENT vmp_ing ON ampp.VMPID = vmp_ing.VMPID
+        LEFT JOIN INGREDIENT ing ON vmp_ing.INGID = ing.ID
+        WHERE gtin.GTIN IS NOT NULL
+        GROUP BY gtin.GTIN, ampp.NM;
         """
 
         cursor.execute(query)
