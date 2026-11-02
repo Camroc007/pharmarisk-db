@@ -31,23 +31,26 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y rlwrap
-          curl -O https://download.clojure.org/install/linux-install-1.11.1.1413.sh
+          curl -fsSLO https://download.clojure.org/install/linux-install-1.11.1.1413.sh
           chmod +x linux-install-1.11.1.1413.sh
           sudo ./linux-install-1.11.1.1413.sh
 
       - name: Clone wardle/dmd
-        run: git clone https://github.com/wardle/dmd.git wardle-dmd
+        run: git clone --depth 1 https://github.com/wardle/dmd.git wardle-dmd
 
       - name: Build dm+d SQLite Database
         env:
           TRUD_API_KEY: ${{ secrets.TRUD_API_KEY }}
         run: |
-          mkdir -p cache
-          echo -n "$TRUD_API_KEY" > api-key.txt
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/cache"
+          printf '%s' "$TRUD_API_KEY" > "$GITHUB_WORKSPACE/api-key.txt"
           cd wardle-dmd
-          clj -M:run latest --api-key ../api-key.txt --cache-dir ../cache --db ../dmd.db
-          
-          if [ ! -f ../dmd.db ]; then
+          clj -M:run latest \
+            --api-key "$GITHUB_WORKSPACE/api-key.txt" \
+            --cache-dir "$GITHUB_WORKSPACE/cache" \
+            --db "$GITHUB_WORKSPACE/dmd.db"
+          if [ ! -s "$GITHUB_WORKSPACE/dmd.db" ]; then
             echo "Error: dmd.db was not generated"
             exit 1
           fi
@@ -56,11 +59,13 @@ jobs:
         run: python export_dmd.py
 
       - name: Commit Updated JSON to Repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add dmd_gtin_latest.json
-          git commit -m "Automated update of NHS dm+d GTIN dataset" || exit 0
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Automated update of NHS dm+d GTIN dataset"
           git push
