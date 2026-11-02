@@ -1,45 +1,63 @@
-import sqlite3
 import json
+import sqlite3
 import sys
 
+DB_PATH = "dmd.db"
+OUT_PATH = "dmd_gtin_latest.json"
+
+# NOTE: table/column names below are a best guess at the dmd SQLite schema.
+# If the query fails, the script prints the real schema so it can be fixed.
+QUERY = """
+SELECT
+    gtin.gtin AS gtin,
+    ampp.nm AS product_name,
+    GROUP_CONCAT(DISTINCT ing.nm) AS ingredients
+FROM gtin_ampp gtin
+JOIN ampp ON gtin.amppid = ampp.id
+LEFT JOIN vmp_ing ON ampp.vmpid = vmp_ing.vmpid
+LEFT JOIN ing ON vmp_ing.ingid = ing.id
+WHERE gtin.gtin IS NOT NULL
+GROUP BY gtin.gtin, ampp.nm;
+"""
+
+
+def dump_schema(conn):
+    print("---- Actual database schema ----", file=sys.stderr)
+    for name, sql in conn.execute(
+        "SELECT name, sql FROM sqlite_master "
+        "WHERE type IN ('table', 'view') ORDER BY name"
+    ):
+        print(f"-- {name}\n{sql}\n", file=sys.stderr)
+
+
 def build_gtin_json():
+    conn = sqlite3.connect(DB_PATH)
     try:
-        conn = sqlite3.connect("dmd.db")
-        cursor = conn.cursor()
-
-        # Query GTINs, Product Names (AMPP/VMP), and Active Ingredients (ing)
-        query = """
-        SELECT 
-            gtin.gtin AS gtin,
-            ampp.nm AS product_name,
-            GROUP_CONCAT(ing.nm, ', ') AS ingredients
-        FROM gtin_ampp gtin
-        JOIN ampp ON gtin.amppid = ampp.id
-        LEFT JOIN vmp_ing ON ampp.vmpid = vmp_ing.vmpid
-        LEFT JOIN ing ON vmp_ing.ingid = ing.id
-        WHERE gtin.gtin IS NOT NULL
-        GROUP BY gtin.gtin, ampp.nm;
-        """
-
-        cursor.execute(query)
-        rows = cursor.fetchall()
-
-        dataset = []
-        for row in rows:
-            dataset.append({
-                "gtin": str(row[0]),
-                "product_name": row[1] if row[1] else "",
-                "ingredients": row[2] if row[2] else ""
-            })
-
-        with open("dmd_gtin_latest.json", "w", encoding="utf-8") as f:
-            json.dump(dataset, f, indent=2, ensure_ascii=False)
-
-        print(f"Successfully exported {len(dataset)} GTIN records.")
-
+        rows = conn.execute(QUERY).fetchall()
     except sqlite3.Error as e:
-        print(f"SQLite Query Error: {e}")
+        print(f"SQLite query error: {e}", file=sys.stderr)
+        dump_schema(conn)
         sys.exit(1)
+
+    if not rows:
+        print("Query returned no rows; not overwriting existing dataset.", file=sys.stderr)
+        dump_schema(conn)
+        sys.exit(1)
+
+    dataset = [
+        {
+            "gtin": str(gtin),
+            "product_name": name or "",
+            "ingredients": ingredients or "",
+        }
+        for gtin, name, ingredients in rows
+    ]
+
+    with open(OUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(dataset, f, indent=2, ensure_ascii=False)
+
+    print(f"Successfully exported {len(dataset)} GTIN records.")
+
 
 if __name__ == "__main__":
     build_gtin_json()
