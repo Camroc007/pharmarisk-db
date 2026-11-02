@@ -5,19 +5,27 @@ import sys
 DB_PATH = "dmd.db"
 OUT_PATH = "dmd_gtin_latest.json"
 
-# NOTE: table/column names below are a best guess at the dmd SQLite schema.
-# If the query fails, the script prints the real schema so it can be fixed.
 QUERY = """
+WITH vmp_ingredients AS (
+    SELECT VPID, GROUP_CONCAT(NM, ', ') AS ingredients
+    FROM (
+        SELECT DISTINCT vi.VPID AS VPID, i.NM AS NM
+        FROM VMP__VIRTUAL_PRODUCT_INGREDIENT vi
+        JOIN INGREDIENT i ON i.ISID = vi.ISID
+        ORDER BY i.NM
+    )
+    GROUP BY VPID
+)
 SELECT
-    gtin.gtin AS gtin,
-    ampp.nm AS product_name,
-    GROUP_CONCAT(DISTINCT ing.nm) AS ingredients
-FROM gtin_ampp gtin
-JOIN ampp ON gtin.amppid = ampp.id
-LEFT JOIN vmp_ing ON ampp.vmpid = vmp_ing.vmpid
-LEFT JOIN ing ON vmp_ing.ingid = ing.id
-WHERE gtin.gtin IS NOT NULL
-GROUP BY gtin.gtin, ampp.nm;
+    g.GTIN AS gtin,
+    ampp.NM AS product_name,
+    vi.ingredients AS ingredients
+FROM GTIN__AMPP g
+JOIN AMPP ampp ON ampp.APPID = g.AMPPID
+LEFT JOIN AMP amp ON amp.APID = ampp.APID
+LEFT JOIN vmp_ingredients vi ON vi.VPID = amp.VPID
+WHERE g.GTIN IS NOT NULL AND g.GTIN != ''
+ORDER BY g.GTIN;
 """
 
 
