@@ -38,6 +38,14 @@ jobs:
       - name: Clone wardle/dmd
         run: git clone --depth 1 https://github.com/wardle/dmd.git wardle-dmd
 
+      - name: Check TRUD key
+        env:
+          TRUD_API_KEY: ${{ secrets.TRUD_API_KEY }}
+        run: |
+          echo "Key length: ${#TRUD_API_KEY}"
+          curl -s -o /dev/null -w "HTTP %{http_code}\n" \
+            "https://isd.digital.nhs.uk/trud/api/v1/keys/${TRUD_API_KEY}/items/24/releases?latest"
+
       - name: Build dm+d SQLite Database
         env:
           TRUD_API_KEY: ${{ secrets.TRUD_API_KEY }}
