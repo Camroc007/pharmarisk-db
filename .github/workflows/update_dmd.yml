@@ -2,7 +2,7 @@ name: Update NHS dm+d Dataset
 
 on:
   schedule:
-    - cron: '0 3 * * 0' # Weekly on Sunday at 3:00 AM UTC
+    - cron: '0 3 * * 1' # Weekly on Monday at 3:00 AM UTC
   workflow_dispatch: # Manual trigger
 
 permissions:
@@ -66,14 +66,14 @@ jobs:
       - name: Run Export Script
         run: python export_dmd.py
 
-      - name: Commit Updated JSON to Repository
+      - name: Commit Updated JSONs to Repository
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add dmd_gtin_latest.json
+          git add dmd_gtin_latest.json mhra_ingredients.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "Automated update of NHS dm+d GTIN dataset"
+          git commit -m "Automated update of NHS dm+d GTIN & MHRA side-effect datasets"
           git push
