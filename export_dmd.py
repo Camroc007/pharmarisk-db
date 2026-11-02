@@ -40,7 +40,7 @@ STATIC_CARDIAC_RISK_MAP = {
 SALTS_AND_SUFFIXES = r'\b(ph\.?\s*eur|usp|bp|hydrate|hydrochloride|hcl|maleate|sodium|sulfate|sulphate|besilate|mesilate|tartrate|trihydrate|dihydrate|phosphate|acetate|bromide)\b'
 
 # ---------------------------------------------------------------------------
-# 2. Helper Functions & Matching Logic
+# 2. Text Normalization & Matching Logic
 # ---------------------------------------------------------------------------
 def normalize_text(text: str) -> str:
     if not text:
@@ -84,6 +84,9 @@ def find_mhra_match(dmd_ingredient: str, mhra_db: dict):
 
     return best_match
 
+# ---------------------------------------------------------------------------
+# 3. MHRA Master Ingredient Database Fetcher
+# ---------------------------------------------------------------------------
 def build_mhra_ingredient_database():
     print("Building MHRA Master Ingredient Database...")
     ingredient_db = {}
@@ -145,8 +148,19 @@ def build_mhra_ingredient_database():
     return ingredient_db
 
 # ---------------------------------------------------------------------------
-# 3. SQLite Export Loop with Correct Wardle dm+d Table Names
+# 4. Introspective Schema Resolver & GTIN Exporter
 # ---------------------------------------------------------------------------
+def get_table_columns(cursor, table_name):
+    cursor.execute(f"PRAGMA table_info({table_name});")
+    return [row[1] for row in cursor.fetchall()]
+
+def find_column(columns, candidates):
+    for cand in candidates:
+        for col in columns:
+            if col.upper() == cand.upper():
+                return col
+    return None
+
 def build_gtin_json():
     mhra_ingredients = build_mhra_ingredient_database()
 
@@ -154,18 +168,54 @@ def build_gtin_json():
         conn = sqlite3.connect("dmd.db")
         cursor = conn.cursor()
 
-        # SQL Query targeting wardle/dmd's schema tables
-        query = """
+        # 1. Inspect schema tables
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = [row[0] for row in cursor.fetchall()]
+
+        # Determine GTIN table
+        gtin_table = None
+        for t in ["GTIN__AMPP", "gtin_ampp", "gtin", "GTIN"]:
+            if t in tables:
+                gtin_table = t
+                break
+
+        if not gtin_table:
+            raise Exception("Could not locate GTIN table in dmd.db")
+
+        # Inspect columns for GTIN and AMPP tables
+        gtin_cols = get_table_columns(cursor, gtin_table)
+        ampp_cols = get_table_columns(cursor, "AMPP")
+        vmp_ing_cols = get_table_columns(cursor, "VMP__VIRTUAL_PRODUCT_INGREDIENT")
+        ing_cols = get_table_columns(cursor, "INGREDIENT")
+
+        # Resolve primary key and foreign key column names
+        gtin_val_col = find_column(gtin_cols, ["GTIN", "gtin"])
+        gtin_ampp_fk = find_column(gtin_cols, ["AMPPID", "APPID", "amppid", "id"])
+        
+        ampp_pk = find_column(ampp_cols, ["AMPPID", "APPID", "ID", "id"])
+        ampp_name_col = find_column(ampp_cols, ["NM", "nm", "NAME", "name"])
+        ampp_vmp_fk = find_column(ampp_cols, ["VMPID", "VPID", "vmpid"])
+
+        vmp_ing_vmp_fk = find_column(vmp_ing_cols, ["VMPID", "VPID", "vmpid"])
+        vmp_ing_ing_fk = find_column(vmp_ing_cols, ["INGID", "ISID", "ingid"])
+
+        ing_pk = find_column(ing_cols, ["INGID", "ISID", "ID", "id"])
+        ing_name_col = find_column(ing_cols, ["NM", "nm", "NAME", "name"])
+
+        print(f"Resolved Schema Mapping: GTIN Table='{gtin_table}', GTIN Col='{gtin_val_col}', AMPP PK='{ampp_pk}', Ingredient Name Col='{ing_name_col}'")
+
+        # Build dynamic query based on resolved columns
+        query = f"""
         SELECT 
-            gtin.GTIN AS gtin,
-            ampp.NM AS product_name,
-            GROUP_CONCAT(ing.NM, ' + ') AS raw_ingredients
-        FROM GTIN__AMPP gtin
-        JOIN AMPP ampp ON gtin.AMPPID = ampp.ID
-        LEFT JOIN VMP__VIRTUAL_PRODUCT_INGREDIENT vmp_ing ON ampp.VMPID = vmp_ing.VMPID
-        LEFT JOIN INGREDIENT ing ON vmp_ing.INGID = ing.ID
-        WHERE gtin.GTIN IS NOT NULL
-        GROUP BY gtin.GTIN, ampp.NM;
+            gtin.{gtin_val_col} AS gtin,
+            ampp.{ampp_name_col} AS product_name,
+            GROUP_CONCAT(ing.{ing_name_col}, ' + ') AS raw_ingredients
+        FROM {gtin_table} gtin
+        JOIN AMPP ampp ON gtin.{gtin_ampp_fk} = ampp.{ampp_pk}
+        LEFT JOIN VMP__VIRTUAL_PRODUCT_INGREDIENT vmp_ing ON ampp.{ampp_vmp_fk} = vmp_ing.{vmp_ing_vmp_fk}
+        LEFT JOIN INGREDIENT ing ON vmp_ing.{vmp_ing_ing_fk} = ing.{ing_pk}
+        WHERE gtin.{gtin_val_col} IS NOT NULL
+        GROUP BY gtin.{gtin_val_col}, ampp.{ampp_name_col};
         """
 
         cursor.execute(query)
