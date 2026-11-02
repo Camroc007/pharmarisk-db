@@ -6,11 +6,10 @@ import re
 from difflib import SequenceMatcher
 
 # ---------------------------------------------------------------------------
-# 1. MHRA Yellow Card API Configuration & Static Fallback Dictionary
+# 1. Configuration & Safety Fallbacks
 # ---------------------------------------------------------------------------
 MHRA_YELLOW_CARD_URL = "https://products.mhra.gov.uk/api/idap/summary"
 
-# rINN (NHS dm+d standard) <-> BAN / USAN Synonym Map for mapping resilience
 DRUG_SYNONYMS = {
     "hyoscine butylbromide": "scopolamine butylbromide",
     "hyoscine hydrobromide": "scopolamine hydrobromide",
@@ -25,7 +24,6 @@ DRUG_SYNONYMS = {
     "co-dydramol": ["paracetamol", "dihydrocodeine tartrate"]
 }
 
-# Static cardiac/arrhythmia risk fallback (guarantees offline risk flags if API is unavailable)
 STATIC_CARDIAC_RISK_MAP = {
     "hyoscine butylbromide": ["Arrhythmia", "Tachycardia", "Palpitations"],
     "hyoscine hydrobromide": ["Arrhythmia", "Tachycardia", "Palpitations"],
@@ -39,14 +37,12 @@ STATIC_CARDIAC_RISK_MAP = {
     "domperidone": ["QT Prolongation", "Arrhythmia", "Ventricular Arrhythmia"]
 }
 
-# Common salt forms and pharmacopeial suffixes to strip during normalization
 SALTS_AND_SUFFIXES = r'\b(ph\.?\s*eur|usp|bp|hydrate|hydrochloride|hcl|maleate|sodium|sulfate|sulphate|besilate|mesilate|tartrate|trihydrate|dihydrate|phosphate|acetate|bromide)\b'
 
 # ---------------------------------------------------------------------------
-# 2. Text Normalization & Matching Logic
+# 2. Helper Functions
 # ---------------------------------------------------------------------------
 def normalize_text(text: str) -> str:
-    """Strips salts, dosages, special characters, and normalizes spacing."""
     if not text:
         return ""
     clean = text.lower()
@@ -55,25 +51,16 @@ def normalize_text(text: str) -> str:
     return " ".join(clean.split())
 
 def get_fuzzy_ratio(a: str, b: str) -> float:
-    """Calculates Levenshtein similarity ratio between two strings."""
     return SequenceMatcher(None, a, b).ratio()
 
 def find_mhra_match(dmd_ingredient: str, mhra_db: dict):
-    """
-    3-Tier Search:
-      Tier 1: Direct Normalized Key Match
-      Tier 2: Synonym Map Lookup (rINN <-> BAN)
-      Tier 3: Fuzzy / Substring Token Match (>= 88% similarity)
-    """
     norm_dmd = normalize_text(dmd_ingredient)
     if not norm_dmd:
         return None
 
-    # Tier 1: Direct Match
     if norm_dmd in mhra_db:
         return mhra_db[norm_dmd]
 
-    # Tier 2: Synonym Lookup
     if norm_dmd in DRUG_SYNONYMS:
         syn = DRUG_SYNONYMS[norm_dmd]
         if isinstance(syn, str) and syn in mhra_db:
@@ -83,7 +70,6 @@ def find_mhra_match(dmd_ingredient: str, mhra_db: dict):
                 if item in mhra_db:
                     return mhra_db[item]
 
-    # Tier 3: Substring & Fuzzy Match
     best_match = None
     highest_score = 0.0
 
@@ -98,23 +84,16 @@ def find_mhra_match(dmd_ingredient: str, mhra_db: dict):
 
     return best_match
 
-# ---------------------------------------------------------------------------
-# 3. Master MHRA Data Fetching & Dictionary Builder
-# ---------------------------------------------------------------------------
 def build_mhra_ingredient_database():
-    """
-    Fetches live MHRA Yellow Card iDAP summaries and indexes by ingredient key.
-    Falls back gracefully to the static risk map if offline or blocked.
-    """
     print("Building MHRA Master Ingredient Database...")
     ingredient_db = {}
 
     try:
         req = urllib.request.Request(
             MHRA_YELLOW_CARD_URL, 
-            headers={'User-Agent': 'PharmaRiskScanner-CI-Pipeline/1.0'}
+            headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
         )
-        with urllib.request.urlopen(req, timeout=15) as response:
+        with urllib.request.urlopen(req, timeout=10) as response:
             raw_data = response.read().decode('utf-8')
             records = json.loads(raw_data)
             
@@ -135,7 +114,6 @@ def build_mhra_ingredient_database():
                     
                     ingredient_db[ing_key]["all_side_effects"].add(reaction)
                     
-                    # Flag cardiac MedDRA categories or arrhythmia terms
                     is_cardiac_soc = "cardiac" in soc_category.lower()
                     is_arrhythmia_term = any(term in reaction.lower() for term in [
                         "arrhythmia", "tachycardia", "qt prolongation", 
@@ -151,7 +129,6 @@ def build_mhra_ingredient_database():
     except Exception as e:
         print(f"Notice: Live MHRA endpoint fetch skipped ({e}). Applying static cardiac risk rules.")
 
-    # Merge static fallback rules to ensure critical drug safety flags are never missed
     for fallback_ing, cardiac_terms in STATIC_CARDIAC_RISK_MAP.items():
         norm_key = normalize_text(fallback_ing)
         if norm_key not in ingredient_db:
@@ -168,27 +145,37 @@ def build_mhra_ingredient_database():
     return ingredient_db
 
 # ---------------------------------------------------------------------------
-# 4. SQLite Export Loop & JSON Packaging
+# 3. Dynamic Schema Querying
 # ---------------------------------------------------------------------------
 def build_gtin_json():
-    # 1. Generate MHRA Master Ingredient Dictionary
     mhra_ingredients = build_mhra_ingredient_database()
 
     try:
         conn = sqlite3.connect("dmd.db")
         cursor = conn.cursor()
 
-        query = """
+        # Check existing tables in generated dmd.db
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = [row[0] for row in cursor.fetchall()]
+        print(f"Detected SQLite tables in dmd.db: {tables}")
+
+        gtin_table = "gtin" if "gtin" in tables else "gtin_ampp" if "gtin_ampp" in tables else None
+        
+        if not gtin_table:
+            raise Exception("Neither 'gtin' nor 'gtin_ampp' table found in dmd.db")
+
+        # Dynamic SQL query accommodating wardle/dmd schema variants
+        query = f"""
         SELECT 
-            gtin.gtin AS gtin,
+            gtin.{gtin_table} AS gtin,
             ampp.nm AS product_name,
             GROUP_CONCAT(ing.nm, ' + ') AS raw_ingredients
-        FROM gtin_ampp gtin
+        FROM {gtin_table} gtin
         JOIN ampp ON gtin.amppid = ampp.id
         LEFT JOIN vmp_ing ON ampp.vmpid = vmp_ing.vmpid
         LEFT JOIN ing ON vmp_ing.ingid = ing.id
-        WHERE gtin.gtin IS NOT NULL
-        GROUP BY gtin.gtin, ampp.nm;
+        WHERE gtin.{gtin_table} IS NOT NULL
+        GROUP BY gtin.{gtin_table}, ampp.nm;
         """
 
         cursor.execute(query)
@@ -207,10 +194,8 @@ def build_gtin_json():
             combined_side_effects = set()
             has_risk = False
 
-            # Match active ingredients using 3-Tier Matcher
             for raw_ing in split_ingredients:
                 match = find_mhra_match(raw_ing, mhra_ingredients)
-                
                 if match:
                     if match["has_cardiac_risk"]:
                         has_risk = True
@@ -226,11 +211,9 @@ def build_gtin_json():
                 "side_effects_summary": sorted(list(combined_side_effects))
             })
 
-        # Save primary GTIN database for Android Room / Barcode scanning
         with open("dmd_gtin_latest.json", "w", encoding="utf-8") as f:
             json.dump(gtin_dataset, f, indent=2, ensure_ascii=False)
 
-        # Save standalone Master Ingredient database for OCR Camera lookups
         ingredient_export = {
             k: {
                 "ingredient_name": v["ingredient_name"],
@@ -243,10 +226,13 @@ def build_gtin_json():
         with open("mhra_ingredients.json", "w", encoding="utf-8") as f:
             json.dump(ingredient_export, f, indent=2, ensure_ascii=False)
 
-        print(f"Successfully exported {len(gtin_dataset)} GTIN records and {len(ingredient_export)} MHRA ingredients.")
+        print(f"Successfully exported {len(gtin_dataset)} GTIN records and {len(ingredient_export)} ingredients.")
 
     except sqlite3.Error as e:
         print(f"SQLite Query Error: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Export Error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
