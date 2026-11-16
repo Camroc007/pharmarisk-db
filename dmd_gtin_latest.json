@@ -36945,9 +36945,45 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "3838989764029",
+    "product_name": "Memantine 10mg tablets (Krka UK Ltd) 28 tablet",
+    "ingredients": "Memantine hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "3838989764036",
     "product_name": "Memantine 20mg tablets (Krka UK Ltd) 28 tablet 2 x 14 tablets",
     "ingredients": "Memantine hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "3838989765347",
+    "product_name": "Irbesartan 300mg / Hydrochlorothiazide 25mg tablets (Krka UK Ltd) 28 tablet",
+    "ingredients": "Hydrochlorothiazide + Irbesartan",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "3838989765354",
+    "product_name": "Irbesartan 300mg / Hydrochlorothiazide 12.5mg tablets (Krka UK Ltd) 28 tablet",
+    "ingredients": "Hydrochlorothiazide + Irbesartan",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "3838989765361",
+    "product_name": "Irbesartan 150mg / Hydrochlorothiazide 12.5mg tablets (Krka UK Ltd) 28 tablet",
+    "ingredients": "Hydrochlorothiazide + Irbesartan",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -37272,6 +37308,33 @@
     "gtin": "3838989792015",
     "product_name": "Perindopril arginine 5mg / Indapamide 1.25mg tablets (Krka UK Ltd) 30 tablet 3 x 10 tablets",
     "ingredients": "Indapamide + Perindopril arginine",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "3838989792473",
+    "product_name": "Sildenafil 100mg tablets (Krka UK Ltd) 4 tablet",
+    "ingredients": "Sildenafil citrate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "3838989792480",
+    "product_name": "Sildenafil 25mg tablets (Krka UK Ltd) 4 tablet",
+    "ingredients": "Sildenafil citrate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "3838989792497",
+    "product_name": "Sildenafil 50mg tablets (Krka UK Ltd) 4 tablet",
+    "ingredients": "Sildenafil citrate",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -193923,6 +193986,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "4251575907591",
+    "product_name": "Nitrofurantoin 25mg/5ml oral suspension sugar free (Aristo Pharma Ltd) 300 ml",
+    "ingredients": "Nitrofurantoin",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "4251575908031",
     "product_name": "Ivermectin 3mg tablets (Aristo Pharma Ltd) 4 tablet",
     "ingredients": "Ivermectin",
@@ -213236,6 +213308,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5000456071420",
+    "product_name": "Tezspire 210mg/1.91ml solution for injection pre-filled pens (AstraZeneca UK Ltd) 1 pre-filled disposable injection",
+    "ingredients": "Tezepelumab",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5000456071932",
     "product_name": "Tezspire 210mg/1.91ml solution for injection pre-filled syringes (AstraZeneca UK Ltd) 1 pre-filled disposable injection",
     "ingredients": "Tezepelumab",
@@ -213248,15 +213329,6 @@
     "gtin": "5000456072465",
     "product_name": "Calquence 100mg tablets (AstraZeneca UK Ltd) 60 tablet 6 x 10 tablets",
     "ingredients": "Acalabrutinib maleate",
-    "ingredients_with_risk_data": [],
-    "has_cardiac_risk": false,
-    "cardiac_effects": [],
-    "side_effects_summary": []
-  },
-  {
-    "gtin": "5000456076562",
-    "product_name": "Tezspire 210mg/1.91ml solution for injection pre-filled pens (AstraZeneca UK Ltd) 1 pre-filled disposable injection",
-    "ingredients": "Tezepelumab",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -215993,15 +216065,6 @@
     "gtin": "5000489400785",
     "product_name": "Insulin soluble human 1unit/ml solution for infusion 50ml pre-filled syringes (Special Order) 10 pre-filled disposable injection",
     "ingredients": "Insulin soluble human",
-    "ingredients_with_risk_data": [],
-    "has_cardiac_risk": false,
-    "cardiac_effects": [],
-    "side_effects_summary": []
-  },
-  {
-    "gtin": "5000489400853",
-    "product_name": "Fentanyl 1mg/50ml solution for infusion pre-filled syringes (Special Order) 10 pre-filled disposable injection",
-    "ingredients": "Fentanyl citrate",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -231722,6 +231785,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5012509959678",
+    "product_name": "Cuprofen 200mg tablets (SSL International Plc) 96 tablet 8 x 12 tablets",
+    "ingredients": "Ibuprofen",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5012509959845",
     "product_name": "Adult Meltus for Chesty Coughs and Catarrh oral solution (SSL International Plc) 100 ml",
     "ingredients": "Cetylpyridinium chloride + Guaifenesin + Honey purified + Sucrose",
@@ -231734,15 +231806,6 @@
     "gtin": "5012509959852",
     "product_name": "Adult Meltus for Chesty Coughs and Catarrh oral solution (SSL International Plc) 200 ml",
     "ingredients": "Cetylpyridinium chloride + Guaifenesin + Honey purified + Sucrose",
-    "ingredients_with_risk_data": [],
-    "has_cardiac_risk": false,
-    "cardiac_effects": [],
-    "side_effects_summary": []
-  },
-  {
-    "gtin": "5012509961947",
-    "product_name": "Cuprofen 200mg tablets (SSL International Plc) 96 tablet 8 x 12 tablets",
-    "ingredients": "Ibuprofen",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -244865,6 +244928,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5012712800309",
+    "product_name": "Opdivo 300mg/2.5ml solution for injection vials (Bristol-Myers Squibb Pharmaceuticals Ltd) 1 vial",
+    "ingredients": "Nivolumab",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5012716124012",
     "product_name": "Neutrogena Norwegian Formula 40% dermatological cream (Kenvue UK Ltd) 100 ml",
     "ingredients": "Glycerol",
@@ -250835,15 +250907,6 @@
     "gtin": "5012854000759",
     "product_name": "Pelmeg 6mg/0.6ml solution for injection pre-filled syringes (Napp Pharmaceuticals Ltd) 1 pre-filled disposable injection",
     "ingredients": "Pegfilgrastim",
-    "ingredients_with_risk_data": [],
-    "has_cardiac_risk": false,
-    "cardiac_effects": [],
-    "side_effects_summary": []
-  },
-  {
-    "gtin": "5012854001213",
-    "product_name": "Rezzayo 200mg powder for concentrate for solution for infusion vials (Napp Pharmaceuticals Ltd) 1 vial",
-    "ingredients": "Rezafungin acetate",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -260737,7 +260800,7 @@
     "side_effects_summary": []
   },
   {
-    "gtin": "5013457031065",
+    "gtin": "5013457031072",
     "product_name": "Comirnaty JN.1 COVID-19 mRNA Vaccine 30micrograms/0.3ml dose dispersion for injection pre-filled syringes (Pfizer Ltd) 10 dose",
     "ingredients": "",
     "ingredients_with_risk_data": [],
@@ -345320,6 +345383,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5025903014942",
+    "product_name": "Clobazam 10mg/5ml oral suspension sugar free (A A H Pharmaceuticals Ltd) 150 ml",
+    "ingredients": "Clobazam",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5025903014966",
     "product_name": "Rizatriptan 10mg orodispersible tablets sugar free (A A H Pharmaceuticals Ltd) 3 tablet",
     "ingredients": "Rizatriptan benzoate",
@@ -346523,15 +346595,6 @@
     "side_effects_summary": []
   },
   {
-    "gtin": "5025903019077",
-    "product_name": "Clobazam 10mg/5ml oral suspension sugar free (A A H Pharmaceuticals Ltd) 150 ml",
-    "ingredients": "Clobazam",
-    "ingredients_with_risk_data": [],
-    "has_cardiac_risk": false,
-    "cardiac_effects": [],
-    "side_effects_summary": []
-  },
-  {
     "gtin": "5025903019084",
     "product_name": "Clobazam 5mg/5ml oral suspension sugar free (A A H Pharmaceuticals Ltd) 150 ml",
     "ingredients": "Clobazam",
@@ -347396,6 +347459,42 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5025903039877",
+    "product_name": "Diclofenac sodium 3% gel (A A H Pharmaceuticals Ltd) 100 gram",
+    "ingredients": "Diclofenac sodium",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5025903039884",
+    "product_name": "Colchicine 250micrograms/ml oral solution sugar free (A A H Pharmaceuticals Ltd) 75 ml",
+    "ingredients": "Colchicine",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5025903039891",
+    "product_name": "Liothyronine 15microgram tablets (A A H Pharmaceuticals Ltd) 28 tablet 2 x 14 tablets",
+    "ingredients": "Liothyronine sodium",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5025903039921",
+    "product_name": "Liothyronine 25microgram tablets (A A H Pharmaceuticals Ltd) 28 tablet 2 x 14 tablets",
+    "ingredients": "Liothyronine sodium",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5025903039938",
     "product_name": "Dexamfetamine 10mg tablets (A A H Pharmaceuticals Ltd) 30 tablet 3 x 10 tablets",
     "ingredients": "Dexamfetamine sulfate",
@@ -347408,6 +347507,24 @@
     "gtin": "5025903039945",
     "product_name": "Dexamfetamine 20mg tablets (A A H Pharmaceuticals Ltd) 30 tablet 3 x 10 tablets",
     "ingredients": "Dexamfetamine sulfate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5025903039952",
+    "product_name": "Sennosides 7.5mg tablets Adult (A A H Pharmaceuticals Ltd) 60 tablet",
+    "ingredients": "Sennosides",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5025903039976",
+    "product_name": "Rizatriptan 5mg orodispersible tablets sugar free (A A H Pharmaceuticals Ltd) 6 tablet",
+    "ingredients": "Rizatriptan benzoate",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -347471,6 +347588,15 @@
     "gtin": "5025903040194",
     "product_name": "Paracetamol 500mg tablets (A A H Pharmaceuticals Ltd) 30 tablet 3 x 10 tablets",
     "ingredients": "Paracetamol",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5025903040200",
+    "product_name": "Bisoprolol 500micrograms/ml oral solution sugar free (A A H Pharmaceuticals Ltd) 150 ml",
+    "ingredients": "Bisoprolol fumarate",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -351792,6 +351918,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5025903094586",
+    "product_name": "Sennosides 7.5mg tablets Adult (A A H Pharmaceuticals Ltd) 20 tablet 2 x 10 tablets",
+    "ingredients": "Sennosides",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5025903094593",
     "product_name": "Loperamide 2mg capsules (A A H Pharmaceuticals Ltd) 10 capsule",
     "ingredients": "Loperamide hydrochloride",
@@ -351930,6 +352065,15 @@
     "gtin": "5025903095019",
     "product_name": "Baclofen 5mg tablets (A A H Pharmaceuticals Ltd) 84 tablet 4 x 21 tablets",
     "ingredients": "Baclofen",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5025903095095",
+    "product_name": "Sennosides 7.5mg tablets 12 Years Plus (A A H Pharmaceuticals Ltd) 100 tablet",
+    "ingredients": "Sennosides",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -379105,6 +379249,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5037563004096",
+    "product_name": "Sennosides 7.5mg tablets 12 Years Plus (A A H Pharmaceuticals Ltd) 60 tablet",
+    "ingredients": "Sennosides",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5037563004102",
     "product_name": "Diethylstilbestrol 1mg tablets (A A H Pharmaceuticals Ltd) 28 tablet 2 x 14 tablets",
     "ingredients": "Diethylstilbestrol",
@@ -392911,6 +393064,15 @@
   {
     "gtin": "5051089990992",
     "product_name": "Bisoprolol 1.25mg tablets (NorthStar Healthcare Unlimited Company) 28 tablet 2 x 14 tablets",
+    "ingredients": "Bisoprolol fumarate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5051089991005",
+    "product_name": "Bisoprolol 2.5mg tablets (NorthStar Healthcare Unlimited Company) 28 tablet 2 x 14 tablets",
     "ingredients": "Bisoprolol fumarate",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
@@ -432367,15 +432529,6 @@
     "side_effects_summary": []
   },
   {
-    "gtin": "5054290006605",
-    "product_name": "Omjjara 200mg tablets (GlaxoSmithKline UK Ltd) 30 tablet",
-    "ingredients": "Momelotinib dihydrochloride monohydrate",
-    "ingredients_with_risk_data": [],
-    "has_cardiac_risk": false,
-    "cardiac_effects": [],
-    "side_effects_summary": []
-  },
-  {
     "gtin": "5054290006612",
     "product_name": "Omjjara 100mg tablets (GlaxoSmithKline UK Ltd) 30 tablet",
     "ingredients": "Momelotinib dihydrochloride monohydrate",
@@ -432387,6 +432540,15 @@
   {
     "gtin": "5054290006629",
     "product_name": "Omjjara 150mg tablets (GlaxoSmithKline UK Ltd) 30 tablet",
+    "ingredients": "Momelotinib dihydrochloride monohydrate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5054290006636",
+    "product_name": "Omjjara 200mg tablets (GlaxoSmithKline UK Ltd) 30 tablet",
     "ingredients": "Momelotinib dihydrochloride monohydrate",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
@@ -438980,6 +439142,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5055214000570",
+    "product_name": "Fentanyl 1mg/50ml solution for infusion pre-filled syringes (Special Order) 10 pre-filled disposable injection",
+    "ingredients": "Fentanyl citrate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5055214001010",
     "product_name": "Sodium salicylate 100mg/20ml solution for injection ampoules (Special Order) 50 ampoule",
     "ingredients": "Sodium salicylate",
@@ -439181,15 +439352,6 @@
     "gtin": "5055215640720",
     "product_name": "Acetic acid 3% solution (Special Order) 100 ml",
     "ingredients": "Acetic acid",
-    "ingredients_with_risk_data": [],
-    "has_cardiac_risk": false,
-    "cardiac_effects": [],
-    "side_effects_summary": []
-  },
-  {
-    "gtin": "5055215640720",
-    "product_name": "Acetic acid (glacial) 3% solution (Special Order) 100 ml",
-    "ingredients": "Acetic acid glacial",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -439883,6 +440045,15 @@
     "gtin": "5055215661435",
     "product_name": "Atropine 40micrograms/2ml solution for injection ampoules (Special Order) 10 ampoule",
     "ingredients": "Atropine sulfate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5055215661466",
+    "product_name": "Acetic acid (glacial) 3% solution (Special Order) 100 ml",
+    "ingredients": "Acetic acid glacial",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -472820,7 +472991,7 @@
   },
   {
     "gtin": "5060035247264",
-    "product_name": "Zidoval 0.75% vaginal gel (Medical Valley Invest AB) 40 gram",
+    "product_name": "Zidoval 7.5mg/g vaginal gel (Medical Valley Invest AB) 40 gram",
     "ingredients": "Metronidazole",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
@@ -473126,7 +473297,7 @@
   },
   {
     "gtin": "5060040826027",
-    "product_name": "G & G Natural Betacarotene 15mg capsules (G & G Food Supplies Ltd) 120 capsule",
+    "product_name": "G & G Betacarotene 15mg capsules (G & G Food Supplies Ltd) 120 capsule",
     "ingredients": "Betacarotene",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
@@ -480854,6 +481025,33 @@
     "gtin": "5060089610496",
     "product_name": "Trazodone 50mg/5ml oral solution sugar free (Somex Pharma) 120 ml",
     "ingredients": "Trazodone hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5060089610731",
+    "product_name": "Eropid 50mg tablets (Somex Pharma) 2 tablet",
+    "ingredients": "Sildenafil citrate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5060089610748",
+    "product_name": "Eropid 50mg tablets (Somex Pharma) 4 tablet",
+    "ingredients": "Sildenafil citrate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5060089610755",
+    "product_name": "Eropid 50mg tablets (Somex Pharma) 8 tablet 2 x 4 tablets",
+    "ingredients": "Sildenafil citrate",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -504010,6 +504208,15 @@
     "gtin": "5060209733791",
     "product_name": "Lurasidone 74mg tablets (Aspire Pharma Ltd) 28 tablet 2 x 14 tablets",
     "ingredients": "Lurasidone hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5060209733944",
+    "product_name": "Pilocarpine hydrochloride 20mg/ml eye drops (Aspire Pharma Ltd) 10 ml",
+    "ingredients": "Pilocarpine hydrochloride",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -535865,6 +536072,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5060464506086",
+    "product_name": "Metformin 500mg modified-release tablets (Flamingo Pharma (UK) Ltd) 56 tablet 4 x 14 tablets",
+    "ingredients": "Metformin hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5060464506093",
     "product_name": "Ibuprofen 200mg capsules (Flamingo Pharma (UK) Ltd) 16 capsule 2 x 8 capsules",
     "ingredients": "Ibuprofen",
@@ -535958,6 +536174,42 @@
     "gtin": "5060464506796",
     "product_name": "Sennosides 7.5mg tablets Adult (Flamingo Pharma (UK) Ltd) 60 tablet",
     "ingredients": "Sennosides",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5060464506857",
+    "product_name": "Flamingo Cold and Flu with Chesty Cough Relief 500mg/100mg/6.1mg capsules (Flamingo Pharma (UK) Ltd) 16 capsule 2 x 8 capsules",
+    "ingredients": "Guaifenesin + Paracetamol + Phenylephrine hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5060464506888",
+    "product_name": "Flamingo Cold and Flu Relief 500mg/25mg/6.1mg capsules (Flamingo Pharma (UK) Ltd) 16 capsule 2 x 8 capsules",
+    "ingredients": "Caffeine + Paracetamol + Phenylephrine hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5060464507007",
+    "product_name": "Flamingo Cold and Chesty Cough All-in-one 250mg/100mg/5mg tablets (Flamingo Pharma (UK) Ltd) 16 tablet 2 x 8 tablets",
+    "ingredients": "Guaifenesin + Paracetamol + Phenylephrine hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5060464507175",
+    "product_name": "Clonidine 100microgram tablets (Flamingo Pharma (UK) Ltd) 100 tablet 10 x 10 tablets",
+    "ingredients": "Clonidine hydrochloride",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -540298,6 +540550,15 @@
     "gtin": "5060570901379",
     "product_name": "Denbrayce 120mg/1.7ml solution for injection vials (Medical Valley Invest AB) 1 vial",
     "ingredients": "Denosumab",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5060570901386",
+    "product_name": "Metronidazole 7.5mg/g vaginal gel (Medical Valley Invest AB) 40 gram",
+    "ingredients": "Metronidazole",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -560120,6 +560381,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5061064230012",
+    "product_name": "Cetirizine 1mg/ml oral solution sugar free (Indoco Remedies UK Ltd) 200 ml",
+    "ingredients": "Cetirizine hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5061066300003",
     "product_name": "Trinity Gold Sting Free adhesive remover spray TR301 (Charles S Bullen Stomacare Ltd) 50 ml",
     "ingredients": "",
@@ -573788,6 +574058,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "5391520690914",
+    "product_name": "Rezzayo 200mg powder for concentrate for solution for infusion vials (Napp Pharmaceuticals Ltd) 1 vial",
+    "ingredients": "Rezafungin acetate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "5391520750090",
     "product_name": "Oralieve moisturising mouth gel (Oralieve UK) 50 ml",
     "ingredients": "",
@@ -575510,6 +575789,42 @@
     "gtin": "5391549650005",
     "product_name": "Loqtorzi 240mg/6ml concentrate for solution for infusion vials (LEO Pharma) 1 vial",
     "ingredients": "Toripalimab",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5391549970134",
+    "product_name": "Myqorzo 5mg tablets (Cytokinetics UK Ltd) 28 tablet 2 x 14 tablets",
+    "ingredients": "Aficamten",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5391549970141",
+    "product_name": "Myqorzo 10mg tablets (Cytokinetics UK Ltd) 28 tablet 2 x 14 tablets",
+    "ingredients": "Aficamten",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5391549970158",
+    "product_name": "Myqorzo 15mg tablets (Cytokinetics UK Ltd) 28 tablet 2 x 14 tablets",
+    "ingredients": "Aficamten",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "5391549970165",
+    "product_name": "Myqorzo 20mg tablets (Cytokinetics UK Ltd) 28 tablet 2 x 14 tablets",
+    "ingredients": "Aficamten",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -689761,15 +690076,6 @@
     "side_effects_summary": []
   },
   {
-    "gtin": "7613421039066",
-    "product_name": "Bisoprolol 2.5mg tablets (NorthStar Healthcare Unlimited Company) 28 tablet 2 x 14 tablets",
-    "ingredients": "Bisoprolol fumarate",
-    "ingredients_with_risk_data": [],
-    "has_cardiac_risk": false,
-    "cardiac_effects": [],
-    "side_effects_summary": []
-  },
-  {
     "gtin": "7613421039608",
     "product_name": "Kesimpta Sensoready 20mg/0.4ml solution for injection pre-filled pens (Novartis Pharmaceuticals UK Ltd) 1 pre-filled disposable injection",
     "ingredients": "Ofatumumab",
@@ -719975,7 +720281,7 @@
   },
   {
     "gtin": "8445291661455",
-    "product_name": "Compleat paediatric Oral Blends (Nestle Health Science) 150 ml",
+    "product_name": "Compleat paediatric Oral Blends banana & blueberry (Nestle Health Science) 150 ml",
     "ingredients": "",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
@@ -741440,6 +741746,15 @@
     "side_effects_summary": []
   },
   {
+    "gtin": "8901175070893",
+    "product_name": "Trimipramine 50mg capsules (Milpharm Ltd) 28 capsule 2 x 14 capsules",
+    "ingredients": "Trimipramine maleate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
     "gtin": "8901175072293",
     "product_name": "Bilastine 20mg tablets (Milpharm Ltd) 30 tablet 3 x 10 tablets",
     "ingredients": "Bilastine",
@@ -741470,6 +741785,24 @@
     "gtin": "8901175074334",
     "product_name": "Trazodone 150mg tablets (Milpharm Ltd) 28 tablet",
     "ingredients": "Trazodone hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "8901175074600",
+    "product_name": "Buprenorphine 2mg sublingual tablets sugar free (Milpharm Ltd) 7 tablet",
+    "ingredients": "Buprenorphine hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "8901175074617",
+    "product_name": "Buprenorphine 8mg sublingual tablets sugar free (Milpharm Ltd) 7 tablet",
+    "ingredients": "Buprenorphine hydrochloride",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
@@ -741533,6 +741866,42 @@
     "gtin": "8901175076451",
     "product_name": "Tamsulosin 400microgram modified-release tablets (Milpharm Ltd) 30 tablet",
     "ingredients": "Tamsulosin hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "8901175076567",
+    "product_name": "Dimethyl fumarate 120mg gastro-resistant capsules (Milpharm Ltd) 14 capsule",
+    "ingredients": "Dimethyl fumarate",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "8901175077458",
+    "product_name": "Buspirone 5mg tablets (Milpharm Ltd) 30 tablet 3 x 10 tablets",
+    "ingredients": "Buspirone hydrochloride",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "8901175078912",
+    "product_name": "Ticagrelor 60mg tablets (Milpharm Ltd) 56 tablet 4 x 14 tablets",
+    "ingredients": "Ticagrelor",
+    "ingredients_with_risk_data": [],
+    "has_cardiac_risk": false,
+    "cardiac_effects": [],
+    "side_effects_summary": []
+  },
+  {
+    "gtin": "8901175078929",
+    "product_name": "Ticagrelor 90mg tablets (Milpharm Ltd) 56 tablet 4 x 14 tablets",
+    "ingredients": "Ticagrelor",
     "ingredients_with_risk_data": [],
     "has_cardiac_risk": false,
     "cardiac_effects": [],
